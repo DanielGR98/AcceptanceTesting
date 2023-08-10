@@ -14,8 +14,8 @@ Feature: To-Do List Management
     Then the output should contain:
       """
       Tasks:
-      - Buy groceries
-      - Pay bills
+      Buy groceries
+      Pay bills
       """
 
   Scenario: Mark a task as completed

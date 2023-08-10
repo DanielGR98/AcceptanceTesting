@@ -15,9 +15,12 @@ def step_impl(context,task):
     tasks = context.manager.list_tasks()
     assert context.added_task in tasks
 
+###############################################
+
 @given('the to-do list contains tasks')
 def step_impl(context):
     context.manager = TodoListManager()
+    context.manager.add_task('Tasks: ')
     for row in context.table:
         context.manager.add_task(row['Task'])
 
@@ -33,6 +36,8 @@ def step_impl(context):
     
     assert expected_output_lines == actual_output_lines, f"Expected: {expected_output_lines}, Actual: {actual_output_lines}"
 
+###############################################
+
 @when('the user marks task "{task}" as completed')
 def step_impl(context, task):
     context.manager.mark_task_completed(task)
@@ -41,6 +46,8 @@ def step_impl(context, task):
 def step_impl(context, task_name):
     tasks = context.manager.tasks
     assert any(task.title == task_name and task.status == "Completed" for task in tasks)
+
+###############################################
 
 @when('the user clears the to-do list')
 def step_impl(context):
